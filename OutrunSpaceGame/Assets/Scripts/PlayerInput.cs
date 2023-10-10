@@ -6,19 +6,14 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] float speed = 1;
     DiscreteMovement movement;
-    //ProjectileThrower projectileThrower;
-    //PointsHandler pointsHandler;
+
 
     void Awake()
     {
         movement = GetComponent<DiscreteMovement>();
-        //pointsHandler = GameObject.Find("PointsHandler").GetComponent<PointsHandler>;
-        //pointsHandler = GameObject.FindGameObjectWithTag("PointsHandler").GetComponent<PointsHandler>();
-        //pointsHandler=PointsHandler.singleton;
-        
     }
     void Start(){
-        //pointsHandler = PointsHandler.singleton;
+
     }
     void FixedUpdate(){
         Vector3 vel = Vector3.zero;
@@ -26,8 +21,14 @@ public class PlayerInput : MonoBehaviour
         if(Input.GetKey(KeyCode.A)){
             transform.position -= new Vector3(speed*Time.deltaTime,0,0);
         }
-        else if(Input.GetKey(KeyCode.D)){
+        if(Input.GetKey(KeyCode.D)){
             transform.position += new Vector3(speed*Time.deltaTime,0,0);
+        }
+        if(Input.GetKey(KeyCode.S)){
+            transform.position -= new Vector3(0,speed*Time.deltaTime,0);
+        }
+        if(Input.GetKey(KeyCode.W)){
+            transform.position += new Vector3(0,speed*Time.deltaTime,0);
         }
         movement.MoveRB(vel);
     }
