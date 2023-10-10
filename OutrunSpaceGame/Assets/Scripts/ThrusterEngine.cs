@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThrusterEngine : MonoBehaviour
 {
-    public ParticleSystem thruster1, thruster2;
+    public ParticleSystem thruster1;
     // Start is called before the first frame update
     void Start()
     {

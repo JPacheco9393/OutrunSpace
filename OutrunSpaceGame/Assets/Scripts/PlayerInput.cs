@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] float speed = 1;
     DiscreteMovement movement;
+    ThrusterEngine thrusterEngine;
 
 
     void Awake()
@@ -20,6 +20,7 @@ public class PlayerInput : MonoBehaviour
 
         if(Input.GetKey(KeyCode.W)){
             transform.position += new Vector3(0,speed*Time.deltaTime,0);
+            thrusterEngine.ToggleThrusters();
         }
         if(Input.GetKey(KeyCode.S)){
             transform.position -= new Vector3(0,speed*Time.deltaTime,0);
