@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class PlayerInput : MonoBehaviour
-{
+public class PlayerInput : MonoBehaviour{
     [SerializeField] float speed = 1;
     DiscreteMovement movement;
     ThrusterEngine thrusterEngine;
-
+    private Rigidbody rb;
+    Vector3 vel = Vector3.zero;
 
     void Awake()
     {
         movement = GetComponent<DiscreteMovement>();
+        rb = GetComponent<Rigidbody>();
     }
     void Start(){
 
     }
     void FixedUpdate(){
-        Vector3 vel = Vector3.zero;
+        
 
         if(Input.GetKey(KeyCode.W)){
             transform.position += new Vector3(0,speed*Time.deltaTime,0);
@@ -37,15 +38,16 @@ public class PlayerInput : MonoBehaviour
 
         movement.MoveRB(vel);
     }
+        // float horizontalInput = Input.GetAxis("Horizontal");
+        // float verticalInput = Input.GetAxis("Vertical");
+        // Vector3 movementDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+        // movementDirection.Normalize();
+        // rb.velocity = movementDirection * speed;
 
     // Update is called once per frame
     void Update(){
 
-        //movement.MoveTransform(vel);
-        // if(Input.GetKeyDown(KeyCode.Q)){
-        //     projectileThrower.Throw(Vector3.zero);
-        // }
-
+        movement.MoveTransform(vel);
 
 
     }
