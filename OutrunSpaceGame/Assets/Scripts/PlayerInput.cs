@@ -57,7 +57,7 @@ public class PlayerInput : MonoBehaviour{
     // Update is called once per frame
     void Update(){
 
-        movement.MoveTransform(vel);
+        //movement.MoveTransform(vel);
 
 
     }

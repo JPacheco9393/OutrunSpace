@@ -4,25 +4,39 @@ using UnityEngine;
 
 public class AstronautPlayerInput : MonoBehaviour
 {
-    AstronautDiscreteMovement movement;
+    [SerializeField] AstronautDiscreteMovement astonautMovement;
+    [SerializeField] float astroSpeed = 5;
+    //[SerializeField] SpriteRenderer spriteRenderer;
 
     void Awake(){
-        movement = GetComponent<AstronautDiscreteMovement>();
+        astonautMovement = GetComponent<AstronautDiscreteMovement>();
+    }
+    void Start(){
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 vel = Vector3.zero;
-        if(Input.GetKeyDown(KeyCode.W)){
-            vel.y = 1;
-        }else if(Input.GetKeyDown(KeyCode.S)){
-            vel.y = -1;
-        }else if(Input.GetKeyDown(KeyCode.A)){
-            vel.x = -1;
-        }else if(Input.GetKeyDown(KeyCode.D)){
-            vel.x  = 1;
+        // if(Input.GetKeyDown(KeyCode.W)){
+        //     vel.y = 1;
+        // }else 
+        if(Input.GetKey(KeyCode.D)){
+            transform.position += new Vector3(astroSpeed*Time.deltaTime,0,0);
+        }else if(Input.GetKey(KeyCode.A)){
+            transform.position -= new Vector3(astroSpeed*Time.deltaTime,0,0);
+            //spriteRenderer.flipX = true;
         }
-        movement.MoveTransform(vel);
+        else{
+            astonautMovement.Stop();
+        }
+        // else if(Input.GetKeyDown(KeyCode.D)){
+        //     vel.x  = 1;
+        // }
+        
+        if(Input.GetKeyDown(KeyCode.Space)){
+            astonautMovement.Jump();
+        }
+        //astonautMovement.AstronautMoveRB(vel);
     }
 }
 
