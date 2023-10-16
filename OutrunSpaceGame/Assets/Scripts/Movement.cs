@@ -2,44 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AstronautMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
-    protected Rigidbody2D rb;
-    [SerializeField] protected float astroSpeed = 1;
+    [SerializeField] protected float speed = 5;
     [SerializeField] float jumpForce = 5;
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Transform body;
-    public float mag;
-
+    protected Rigidbody2D rb;
     [SerializeField] LayerMask groundMask;
 
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
     }
-    void Update(){
-        mag = Input.GetAxisRaw("Horizontal");
+
+    void Start(){
+
     }
 
-    // public void AstronautMoveTransform(Vector3 vel){
-    //     transform.position += vel * Time.deltaTime;
-    // }
-
-    public void AstronautMoveRB(Vector3 vel){
-        rb.velocity = vel * astroSpeed;
-        //vel *= astroSpeed;
-
-        vel.y = rb.velocity.y;
-        rb.velocity=vel;
+    public void MoveRB(Vector3 vel){
+        rb.velocity = vel * speed;
         if(vel.magnitude > 0){
-            animationStateChanger.ChangeAnimationState("Walk", astroSpeed/5);
+            animationStateChanger?.ChangeAnimationState("Walk",speed/5);
+
             if(vel.x > 0){
                 body.localScale = new Vector3(1,1,1);
             }else if(vel.x < 0){
                 body.localScale = new Vector3(-1,1,1);
             }
-        }
-        else{
-            animationStateChanger.ChangeAnimationState("Idle");
+
+        }else{
+            animationStateChanger?.ChangeAnimationState("Idle");
         }
     }
     public void Stop(){
@@ -47,8 +39,8 @@ public class AstronautMovement : MonoBehaviour
     }
     public void Jump(){
         if(Physics2D.OverlapCircleAll(transform.position-new Vector3(0, .5f, 0), 1, groundMask).Length > 0){
-            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode2D.Impulse);   
+            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode2D.Impulse); 
         }
-        
+          
     }
 }
