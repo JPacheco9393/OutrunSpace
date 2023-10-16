@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AstronautPlayerInput : MonoBehaviour
 {
-    [SerializeField] AstronautDiscreteMovement astonautMovement;
-    [SerializeField] float astroSpeed = 5;
+    [SerializeField] AstronautMovement astronautMovement;
+    [SerializeField] float astroSpeed = 1;
     //[SerializeField] SpriteRenderer spriteRenderer;
 
     void Awake(){
-        astonautMovement = GetComponent<AstronautDiscreteMovement>();
+        astronautMovement = GetComponent<AstronautMovement>();
     }
     void Start(){
     }
@@ -27,14 +27,14 @@ public class AstronautPlayerInput : MonoBehaviour
             //spriteRenderer.flipX = true;
         }
         else{
-            astonautMovement.Stop();
+            astronautMovement.Stop();
         }
         // else if(Input.GetKeyDown(KeyCode.D)){
         //     vel.x  = 1;
         // }
         
-        if(Input.GetKeyDown(KeyCode.Space)){
-            astonautMovement.Jump();
+        if(Input.GetKey(KeyCode.Space)){
+            astronautMovement.Jump();
         }
         //astonautMovement.AstronautMoveRB(vel);
     }

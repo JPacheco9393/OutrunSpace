@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AstronautDiscreteMovement : MonoBehaviour
+public class AstronautMovement : MonoBehaviour
 {
     protected Rigidbody2D rb;
     [SerializeField] protected float astroSpeed = 1;
-    [SerializeField] float jumpForce = 15;
+    [SerializeField] float jumpForce = 5;
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Transform body;
     public float mag;
@@ -27,11 +27,11 @@ public class AstronautDiscreteMovement : MonoBehaviour
     public void AstronautMoveRB(Vector3 vel){
         rb.velocity = vel * astroSpeed;
         //vel *= astroSpeed;
-        
+
         vel.y = rb.velocity.y;
         rb.velocity=vel;
         if(vel.magnitude > 0){
-            animationStateChanger.ChangeAnimationState("Walk");
+            animationStateChanger.ChangeAnimationState("Walk", astroSpeed/5);
             if(vel.x > 0){
                 body.localScale = new Vector3(1,1,1);
             }else if(vel.x < 0){
@@ -47,7 +47,7 @@ public class AstronautDiscreteMovement : MonoBehaviour
     }
     public void Jump(){
         if(Physics2D.OverlapCircleAll(transform.position-new Vector3(0, .5f, 0), 1, groundMask).Length > 0){
-        rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode2D.Impulse);   
+            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode2D.Impulse);   
         }
         
     }
