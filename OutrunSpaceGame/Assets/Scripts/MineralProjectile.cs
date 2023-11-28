@@ -28,7 +28,7 @@ public class MineralProjectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if (other.CompareTag("Player")){
             Debug.Log("OnTriggerEnter2D for Obstacle on AsteroidProjectile.cs has worked");
-            SceneManager.LoadScene("Level 1");
+            SceneManager.LoadScene("Overworld");
             }
         }
 

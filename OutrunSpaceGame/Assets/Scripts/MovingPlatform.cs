@@ -55,13 +55,13 @@ public class MovingPlatform : MonoBehaviour
     // }
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Player")){
-            collision.transform.SetParent(this.transform);
+            collision.transform.parent = this.transform;
         }
     }
     private void OnTriggerExit2D(Collider2D collision){
         if (collision.CompareTag("Player"))
         {
-            collision.transform.SetParent(null);
+            collision.transform.parent = null;
         }
     }
 }
