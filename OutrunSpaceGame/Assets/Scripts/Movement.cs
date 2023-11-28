@@ -8,8 +8,10 @@ public class Movement : MonoBehaviour
     [SerializeField] float jumpForce = 5;
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Transform body;
+  
     protected Rigidbody2D rb;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] float groundCheckRadius = .75f;
 
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
@@ -38,8 +40,8 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
     public void Jump(){
-        if(Physics2D.OverlapCircleAll(transform.position-new Vector3(0, .5f, 0), 1, groundMask).Length > 0){
-            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode2D.Impulse); 
+        if(Physics2D.OverlapCircleAll(transform.position-new Vector3(0,.5f,0),groundCheckRadius,groundMask).Length > 0){
+            rb.AddForce(new Vector3(0,jumpForce,0),ForceMode2D.Impulse);
         }
           
     }

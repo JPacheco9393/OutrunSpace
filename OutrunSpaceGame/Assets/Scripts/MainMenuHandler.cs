@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuHandler : MonoBehaviour
 {
     public void PlayGame(){
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Overworld");
     }
     public void QuitGame(){
         Debug.Log("QUIT!");

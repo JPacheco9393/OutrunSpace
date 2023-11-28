@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+//Movement Script for Ship
 public class PlayerInput : MonoBehaviour{
     [SerializeField] float speed = 1;
     DiscreteMovement movement;
