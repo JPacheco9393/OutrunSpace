@@ -19,7 +19,8 @@ public class SimpleMovementController : MonoBehaviour
     void Start(){
     }
 
-    void FixedUpdate(){
+    //void FixedUpdate(){
+    void Update(){
         Vector3 vel = Vector3.zero;
         if(Input.GetKey(KeyCode.A)){
             vel.x = -1;
@@ -29,8 +30,8 @@ public class SimpleMovementController : MonoBehaviour
         else{
             movement.Stop();
         }
-        movement.MoveRB(vel);
-        if(Input.GetKey(KeyCode.Space)){
+        movement.Move(vel);
+        if(Input.GetKeyDown(KeyCode.Space)){
             movement.Jump();}
 
 

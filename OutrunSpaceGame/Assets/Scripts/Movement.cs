@@ -5,13 +5,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] protected float speed = 5;
-    [SerializeField] float jumpForce = 5;
+    [SerializeField] float jumpForce = 7;
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Transform body;
-  
-    protected Rigidbody2D rb;
+    
+    Rigidbody2D rb;
     [SerializeField] LayerMask groundMask;
-    [SerializeField] float groundCheckRadius = .75f;
+    [SerializeField] float groundCheckRadius = .25f;
 
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
@@ -21,8 +21,10 @@ public class Movement : MonoBehaviour
 
     }
 
-    public void MoveRB(Vector3 vel){
-        rb.velocity = vel * speed;
+    public void Move(Vector3 vel){
+        vel *= speed;
+        vel.y = rb.velocity.y;
+        rb.velocity = vel;
         if(vel.magnitude > 0){
             animationStateChanger?.ChangeAnimationState("Walk",speed/5);
 
@@ -40,8 +42,9 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
     public void Jump(){
-        if(Physics2D.OverlapCircleAll(transform.position-new Vector3(0,.5f,0),groundCheckRadius,groundMask).Length > 0){
+        if(Physics2D.OverlapCircleAll(transform.position-new Vector3(0,.5f,0), 1, groundMask).Length > 0){
             rb.AddForce(new Vector3(0,jumpForce,0),ForceMode2D.Impulse);
+            Debug.Log("Jump has worked");
         }
           
     }
