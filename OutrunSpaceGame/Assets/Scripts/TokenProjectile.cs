@@ -20,6 +20,7 @@ public class TokenProjectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Player")){
             Debug.Log("OnTriggerEnter2D for Obstacle on TokenProjectile.cs has worked");
+            GetComponent<AudioSource>().Play();
             PointsHandler.singleton.AddPoint();
             Destroy(this.gameObject);
         }

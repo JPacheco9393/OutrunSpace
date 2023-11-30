@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Overworld.unity
     guid: f45d0a9b5a87e3b498f8102939e2fc23
   - enabled: 1
-    path: Assets/Scenes/Settings Screen.unity
-    guid: b601c20643bfa4d4994e500705b51092
-  - enabled: 1
     path: Assets/Scenes/PurplePlanetLevel.unity
     guid: 9004db3c7e8123c4481f596101cb6fdc
   - enabled: 1
