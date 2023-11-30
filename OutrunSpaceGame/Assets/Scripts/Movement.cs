@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float jumpForce = 7;
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Transform body;
-    
+    AudioSource jumpSound;
     Rigidbody2D rb;
     [SerializeField] LayerMask groundMask;
     [SerializeField] float groundCheckRadius = .25f;
@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     }
 
     void Start(){
-
+        jumpSound=GetComponent<AudioSource>();
     }
 
     public void Move(Vector3 vel){
@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
     }
     public void Jump(){
         if(Physics2D.OverlapCircleAll(transform.position-new Vector3(0,.5f,0), 1, groundMask).Length > 0){
+            jumpSound.Play();
             rb.AddForce(new Vector3(0,jumpForce,0),ForceMode2D.Impulse);
             Debug.Log("Jump has worked");
         }
