@@ -23,7 +23,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WhitePlanetLevel.unity
     guid: 31d3b26196aa8ec479a1b5a3b023fd5c
-  - enabled: 1
-    path: Assets/Scenes/BluePlanetLevel.unity
-    guid: 284059d7af992c44887ab4eb68da8a7e
   m_configObjects: {}
